@@ -1,0 +1,3 @@
+2017-12-28 09:28:13,690 mylogging.py[line:34] DEBUG This is debug message
+2017-12-28 09:28:13,690 mylogging.py[line:35] INFO This is info message
+2017-12-28 09:28:13,690 mylogging.py[line:36] WARNING This is warning message
