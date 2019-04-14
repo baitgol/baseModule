@@ -1,6 +1,7 @@
 # -*- coding: cp936 -*-
 import threading
 import time
+
 class mythread(threading.Thread):
     def __init__(self,num):
         threading.Thread.__init__(self)
@@ -24,7 +25,7 @@ if __name__ == '__main__':
 ##    t = mythread()
 ##    t.start()
 ##    t.join()  
-    global mutex,count,con
+    global mutex, count, count
     count =1
     threads = []
     mutex = threading.Lock() #创建锁
