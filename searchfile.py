@@ -13,10 +13,10 @@ def Search(rootdir,suffixes,arg):
                         for line in fh:
                             lineNum += 1
                             if arg in line:
-                                print lineNum, ':',path
-                                print line
+                                print(lineNum, ':',path)
+                                print(line)
                 except:
-                    print 'error:',path
+                    print('error:',path)
         if os.path.isdir(path):
             Search(path,suffixes,arg)
 

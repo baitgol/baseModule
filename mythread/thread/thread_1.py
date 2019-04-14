@@ -9,14 +9,14 @@ class mythread(threading.Thread):
     def run(self): # 重写run函数
         global mutex,count
         threadname = threading.currentThread().getName()
-        print 'thread %s starting...'%(threadname)
+        print('thread %s starting...'%(threadname))
         list_thread = threading.enumerate()
-        print list_thread
+        print(list_thread)
         for i in range(self._num):
             mutex.acquire()# 取得锁
             count = count + 1
-            print 'thread %s starting...'%(threadname)
-            print count
+            print('thread %s starting...'%(threadname))
+            print(count)
             mutex.release() #释放锁
             time.sleep(5)
 

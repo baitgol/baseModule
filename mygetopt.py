@@ -10,17 +10,17 @@ import sys
 
 
 try:
-    opts,args = getopt.getopt(sys.argv[1:],"hp:i:",["help","ip=","port="])
+    opts, args = getopt.getopt(sys.argv[1:], "hp:i:",["help","ip=","port="])
 except getopt.GetoptError:
     sys.exit()
 
 for name,value in opts:
     if name in ("-h","--help"):
-        print "useage"
+        print("useage")
     if name in ("-i","--ip"):
-        print 'ip is -----',value
+        print(('ip is -----',value))
     if name in ("-p","--port"):
-        print "port is ------",value
+        print(("port is ------",value))
 
 
 

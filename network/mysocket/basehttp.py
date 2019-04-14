@@ -1,24 +1,24 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-import BaseHTTPServer
-import urlparse
+import http.server
+import urllib.parse
 import time
-from SocketServer import ThreadingMixIn
+from socketserver import ThreadingMixIn
 import threading
 
-class WebRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+class WebRequestHandler(http.server.BaseHTTPRequestHandler):
 
     def do_POST(self):
-        print 'post message'
-        parsed_path = urlparse.urlparse(self.path)
+        print('post message')
+        parsed_path = urllib.parse.urlparse(self.path)
         length = self.headers.getheader('content-length');
         nbytes = int(length)
         data = self.rfile.read(nbytes)
         cur_thread = threading.currentThread()
-        print 'Thread:%s\tdata:%s' % (cur_thread.getName(), data)
+        print('Thread:%s\tdata:%s' % (cur_thread.getName(), data))
         for i in range(10) :
-            print '%s:waiting...' % cur_thread.getName()
+            print('%s:waiting...' % cur_thread.getName())
             time.sleep(1)
 
 
@@ -28,7 +28,7 @@ class WebRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(message)
 
-class ThreadingHttpServer( ThreadingMixIn, BaseHTTPServer.HTTPServer ):
+class ThreadingHttpServer( ThreadingMixIn, http.server.HTTPServer ):
     pass
 
 if __name__ == '__main__':
@@ -41,6 +41,6 @@ if __name__ == '__main__':
     # Exit the server thread when the main thread terminates
     server_thread.setDaemon(True)
     server_thread.start()
-    print "Server loop running in thread:", server_thread.getName()
+    print("Server loop running in thread:", server_thread.getName())
     while True:
         pass

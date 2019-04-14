@@ -17,6 +17,6 @@ sftp.put('d:\\123.txt','/home/test/input')
 #sftp.get('/home/atp/123','d:\\123')
 stdin,stdout,stderr=ssh.exec_command('ls /home/')
 for line in stdout:
-    print line,
+    print(line, end=' ')
 	
 ssh.close()

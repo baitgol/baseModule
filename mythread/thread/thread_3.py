@@ -11,15 +11,15 @@ class mythread(threading.Thread):
     def run(self):
         x = 0
         time.sleep(5)
-        print self.id
+        print(self.id)
 
 def func():
     t.start()
-    print t.isAlive() #查看线程状态
+    print(t.isAlive()) #查看线程状态
     t.join()  #等待线程完成
     #print t.isAlive()
     for i in range(5):
-        print i
+        print(i)
 
 t = mythread(2)
 func()

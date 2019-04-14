@@ -25,36 +25,36 @@ U(UNICODE): 使预定字符类 \w \W \b \B \s \S \d \D 取决于unicode定义的
 X(VERBOSE): 详细模式。这个模式下正则表达式可以是多行，忽略空白字符，并可以加入注释。以下两个正则表达式是等价的：
 """
 m = re.match(r'(\w+) (\w+)(?P<sign>.*)', 'hello world!')
-print "m.string:", m.string
-print "m.re:", m.re
-print "m.pos:", m.pos
-print "m.endpos:", m.endpos
-print "m.lastindex:", m.lastindex
-print "m.lastgroup:", m.lastgroup
+print("m.string:", m.string)
+print("m.re:", m.re)
+print("m.pos:", m.pos)
+print("m.endpos:", m.endpos)
+print("m.lastindex:", m.lastindex)
+print("m.lastgroup:", m.lastgroup)
 #group([group1, …]):
 #获得一个或多个分组截获的字符串；指定多个参数时将以元组形式返回。
 # group1可以使用编号也可以使用别名；编号0代表整个匹配的子串；不填写参数时，返回group(0)；
 # 没有截获字符串的组返回None；截获了多次的组返回最后一次截获的子串。
-print "m.group(1):", m.group(1)
-print "m.groups():", m.groups()
-print "m.groupdict():", m.groupdict()
-print "m.start(2):", m.start(2)
-print "m.end(2):", m.end(2)
-print "m.span(2):", m.span(2)
-print r"m.expand(r'\2 \1\3'):", m.expand(r'\2 \1\3')
+print("m.group(1):", m.group(1))
+print("m.groups():", m.groups())
+print("m.groupdict():", m.groupdict())
+print("m.start(2):", m.start(2))
+print("m.end(2):", m.end(2))
+print("m.span(2):", m.span(2))
+print(r"m.expand(r'\2 \1\3'):", m.expand(r'\2 \1\3'))
 
 m=re.search(r'world','Hello world!')
-print 'search:', m.group()
+print('search:', m.group())
 
 p = re.compile(r'\d+')
-print 'findall:', p.findall('one1two2three3four4')
+print('findall:', p.findall('one1two2three3four4'))
 
 p = re.compile(r'\d+')
 for m in p.finditer('one1two2three3four4'):
-    print m.group(),
-print
+    print(m.group(), end=' ')
+print()
 p = re.compile(r'\d+')
-print 'split:', p.split('one1two2three3four4')
+print('split:', p.split('one1two2three3four4'))
 
 #sub
 """
@@ -66,13 +66,13 @@ count用于指定最多替换次数，不指定时全部替换。
 """
 p = re.compile(r'(\w+) (\w+)')
 s = 'i say, hello world!'
-print 'sub:', p.sub(r'\2 \1', s)
+print('sub:', p.sub(r'\2 \1', s))
 
 def func(m):
-    print m.group(1).title()
-    print m.group(2).title()
+    print(m.group(1).title())
+    print(m.group(2).title())
     return m.group(1).title() + ' ' + m.group(2).title()
-print p.sub(func, s)
+print(p.sub(func, s))
 
 #subn返回 (sub(repl, string[, count]), 替换次数)。
 

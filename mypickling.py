@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # Filename: pickling.py
 
-import cPickle as p
+import pickle as p
 #import pickle as p
 
 shoplistfile='shoplist.data'
@@ -19,4 +19,4 @@ del shoplist # remove the shoplist
 # Read back from the storage
 f=file(shoplistfile)
 storedlist=p.load(f)
-print storedlist
+print(storedlist)

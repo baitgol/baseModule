@@ -11,13 +11,13 @@ def thread_main(a):
     # 获得线程名
     threadname = threading.currentThread().getName()
      
-    for x in xrange(0, int(a)):
+    for x in range(0, int(a)):
         # 取得锁
         mutex.acquire()
         count = count + 1
         # 释放锁
         mutex.release()
-        print threadname, x, count
+        print(threadname, x, count)
         time.sleep(1)
      
 def main(num):
@@ -28,7 +28,7 @@ def main(num):
     # 创建一个锁
     mutex = threading.Lock()
     # 先创建线程对象
-    for x in xrange(0, num):
+    for x in range(0, num):
         threads.append(threading.Thread(target=thread_main, args=(1,)))
     # 启动所有线程
     for t in threads:

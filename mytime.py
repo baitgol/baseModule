@@ -19,19 +19,19 @@ b. 格式化的时间字符串(format string)
 c. struct_time(元组)
 """
 #timestamp
-print(time.time())
+print((time.time()))
 # str
-print(time.ctime())
+print((time.ctime()))
 
 #struct_time
-print(time.localtime())
+print((time.localtime()))
 """
 使用localtime 返回一个time结构，
 其中包括tm_year,tm_mon,tm_mday,tm_hour,tm_min,tm_sec,tm_wday,tm_yday,tm_isdst=0 夏令时间标志
 tm_wday为周几，0是周一，6是周日
 """
 #这个返回UTC时间
-print(time.gmtime())
+print((time.gmtime()))
 
 #转换
 
@@ -59,11 +59,11 @@ time.mktime(time.strptime('2014-12-01 11:14:02', "%Y-%m-%d %H:%M:%S"))
 
 
 past = (2010, 11, 12, 13, 14, 15 , 0 , 0 , 0)
-print time.asctime(past)
-print time.localtime(time.mktime(past))
+print(time.asctime(past))
+print(time.localtime(time.mktime(past)))
 
 currenttime = int(time.time())
 tm = time.strftime("%Y%m%d%H%M%S",time.localtime(currenttime))
-print tm
+print(tm)
 
 now = datetime.now()

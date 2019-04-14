@@ -10,12 +10,12 @@ class mythread(threading.Thread):
         global  event
         if event.isSet():         #判断是否为空
             event.clear()          #设置为假
-            print 'c'+self.getName()
+            print('c'+self.getName())
             event.wait()           #为真立即执行
-            print self.getName()
+            print(self.getName())
 
         else:
-            print self.getName()
+            print(self.getName())
             event.set()
 
 

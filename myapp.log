@@ -1,0 +1,2 @@
+2019-04-14 21:16:35,451 mylogging.py[line:36] INFO This is info message
+2019-04-14 21:16:35,451 mylogging.py[line:37] WARNING This is warning message

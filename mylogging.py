@@ -1,55 +1,97 @@
-# -*- coding: cp936 -*-
+# -*- coding: utf-8 -*-
 import logging
 
 
-#Ä¬ÈÏÇé¿öÏÂ£¬logging½«ÈÕÖ¾´òÓ¡µ½ÆÁÄ»£¬ÈÕÖ¾¼¶±ğÎªWARNING£»
-#ÈÕÖ¾¼¶±ğ´óĞ¡¹ØÏµÎª£ºCRITICAL > ERROR > WARNING > INFO > DEBUG > NOTSET£¬µ±È»Ò²¿ÉÒÔ×Ô¼º¶¨ÒåÈÕÖ¾¼¶±ğ
+#é»˜è®¤æƒ…å†µä¸‹ï¼Œloggingå°†æ—¥å¿—æ‰“å°åˆ°å±å¹•ï¼Œæ—¥å¿—çº§åˆ«ä¸ºWARNINGï¼›
+#æ—¥å¿—çº§åˆ«å¤§å°å…³ç³»ä¸ºï¼šCRITICAL > ERROR > WARNING > INFO > DEBUG > NOTSETï¼Œå½“ç„¶ä¹Ÿå¯ä»¥è‡ªå·±å®šä¹‰æ—¥å¿—çº§åˆ«
 
-#½«ÈÕÖ¾Êä³öµ½ÎÄ¼ş
+#å°†æ—¥å¿—è¾“å‡ºåˆ°æ–‡ä»¶
 
 # logging.basicConfig(level=logging.DEBUG,
-                # format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-                # datefmt='%a, %d %b %Y %H:%M:%S',
-                # filename='myapp.log',
-                # filemode='a') #'w'
+#                 format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+#                 datefmt='%a, %d %b %Y %H:%M:%S',
+#                 filename='myapp.log',
+#                 filemode='a') #'w'
 
-#»òÕß
+#æ—¥å¿—è¾“å‡ºåˆ°æ–‡ä»¶
 logger = logging.getLogger()
-filehandler = logging.FileHandler('myapp.log')
+filehandler = logging.FileHandler('myapp.log', mode='w')
 formathandler = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
 filehandler.setFormatter(formathandler)
 logger.addHandler(filehandler)
-logger.setLevel(logging.DEBUG)
+
+# logger.setLevel(logging.DEBUG)
+
+#è¾“å‡ºåˆ°å±å¹•
+#å®šä¹‰ä¸€ä¸ªStreamHandlerï¼Œå°†INFOçº§åˆ«æˆ–æ›´é«˜çš„æ—¥å¿—ä¿¡æ¯æ‰“å°åˆ°æ ‡å‡†é”™è¯¯ï¼Œå¹¶å°†å…¶æ·»åŠ åˆ°å½“å‰çš„æ—¥å¿—å¤„ç†å¯¹è±¡#
+# logger = logging.getLogger()
+console = logging.StreamHandler()
+# formathandler = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
+console.setFormatter(formathandler)
+logger.addHandler(console)
+logger.setLevel(logging.INFO)
 
 
-#Êä³öµ½ÆÁÄ»
-#¶¨ÒåÒ»¸öStreamHandler£¬½«INFO¼¶±ğ»ò¸ü¸ßµÄÈÕÖ¾ĞÅÏ¢´òÓ¡µ½±ê×¼´íÎó£¬²¢½«ÆäÌí¼Óµ½µ±Ç°µÄÈÕÖ¾´¦Àí¶ÔÏó#
-# console = logging.StreamHandler()
-# console.setLevel(logging.INFO)
-# formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
-# console.setFormatter(formatter)
-# logging.getLogger('').addHandler(console)
+logger.debug('This is debug message')
+logger.info('This is info message')
+logger.warning('This is warning message')
 
+#logging.basicConfigå‡½æ•°å„å‚æ•°:
+#filename: æŒ‡å®šæ—¥å¿—æ–‡ä»¶å
+#filemode: å’Œfileå‡½æ•°æ„ä¹‰ç›¸åŒï¼ŒæŒ‡å®šæ—¥å¿—æ–‡ä»¶çš„æ‰“å¼€æ¨¡å¼ï¼Œ'w'æˆ–'a'
+#format: æŒ‡å®šè¾“å‡ºçš„æ ¼å¼å’Œå†…å®¹ï¼Œformatå¯ä»¥è¾“å‡ºå¾ˆå¤šæœ‰ç”¨ä¿¡æ¯ï¼Œå¦‚ä¸Šä¾‹æ‰€ç¤º:
+# %(levelno)s: æ‰“å°æ—¥å¿—çº§åˆ«çš„æ•°å€¼
+# %(levelname)s: æ‰“å°æ—¥å¿—çº§åˆ«åç§°
+# %(pathname)s: æ‰“å°å½“å‰æ‰§è¡Œç¨‹åºçš„è·¯å¾„ï¼Œå…¶å®å°±æ˜¯sys.argv[0]
+# %(filename)s: æ‰“å°å½“å‰æ‰§è¡Œç¨‹åºå
+# %(funcName)s: æ‰“å°æ—¥å¿—çš„å½“å‰å‡½æ•°
+# %(lineno)d: æ‰“å°æ—¥å¿—çš„å½“å‰è¡Œå·
+# %(asctime)s: æ‰“å°æ—¥å¿—çš„æ—¶é—´
+# %(thread)d: æ‰“å°çº¿ç¨‹ID
+# %(threadName)s: æ‰“å°çº¿ç¨‹åç§°
+# %(process)d: æ‰“å°è¿›ç¨‹ID
+# %(message)s: æ‰“å°æ—¥å¿—ä¿¡æ¯
+#datefmt: æŒ‡å®šæ—¶é—´æ ¼å¼ï¼ŒåŒtime.strftime()
+#level: è®¾ç½®æ—¥å¿—çº§åˆ«ï¼Œé»˜è®¤ä¸ºlogging.WARNING
+#stream: æŒ‡å®šå°†æ—¥å¿—çš„è¾“å‡ºæµï¼Œå¯ä»¥æŒ‡å®šè¾“å‡ºåˆ°sys.stderr,sys.stdoutæˆ–è€…æ–‡ä»¶ï¼Œé»˜è®¤è¾“å‡ºåˆ°sys.stderrï¼Œå½“streamå’ŒfilenameåŒæ—¶æŒ‡å®šæ—¶ï¼Œstreamè¢«å¿½ç•¥
 
-logging.debug('This is debug message')
-logging.info('This is info message')
-logging.warning('This is warning message')
-
-#logging.basicConfigº¯Êı¸÷²ÎÊı:
-#filename: Ö¸¶¨ÈÕÖ¾ÎÄ¼şÃû
-#filemode: ºÍfileº¯ÊıÒâÒåÏàÍ¬£¬Ö¸¶¨ÈÕÖ¾ÎÄ¼şµÄ´ò¿ªÄ£Ê½£¬'w'»ò'a'
-#format: Ö¸¶¨Êä³öµÄ¸ñÊ½ºÍÄÚÈİ£¬format¿ÉÒÔÊä³öºÜ¶àÓĞÓÃĞÅÏ¢£¬ÈçÉÏÀıËùÊ¾:
-# %(levelno)s: ´òÓ¡ÈÕÖ¾¼¶±ğµÄÊıÖµ
-# %(levelname)s: ´òÓ¡ÈÕÖ¾¼¶±ğÃû³Æ
-# %(pathname)s: ´òÓ¡µ±Ç°Ö´ĞĞ³ÌĞòµÄÂ·¾¶£¬ÆäÊµ¾ÍÊÇsys.argv[0]
-# %(filename)s: ´òÓ¡µ±Ç°Ö´ĞĞ³ÌĞòÃû
-# %(funcName)s: ´òÓ¡ÈÕÖ¾µÄµ±Ç°º¯Êı
-# %(lineno)d: ´òÓ¡ÈÕÖ¾µÄµ±Ç°ĞĞºÅ
-# %(asctime)s: ´òÓ¡ÈÕÖ¾µÄÊ±¼ä
-# %(thread)d: ´òÓ¡Ïß³ÌID
-# %(threadName)s: ´òÓ¡Ïß³ÌÃû³Æ
-# %(process)d: ´òÓ¡½ø³ÌID
-# %(message)s: ´òÓ¡ÈÕÖ¾ĞÅÏ¢
-#datefmt: Ö¸¶¨Ê±¼ä¸ñÊ½£¬Í¬time.strftime()
-#level: ÉèÖÃÈÕÖ¾¼¶±ğ£¬Ä¬ÈÏÎªlogging.WARNING
-#stream: Ö¸¶¨½«ÈÕÖ¾µÄÊä³öÁ÷£¬¿ÉÒÔÖ¸¶¨Êä³öµ½sys.stderr,sys.stdout»òÕßÎÄ¼ş£¬Ä¬ÈÏÊä³öµ½sys.stderr£¬µ±streamºÍfilenameÍ¬Ê±Ö¸¶¨Ê±£¬stream±»ºöÂÔ
+#https://www.cnblogs.com/nancyzhu/p/8551506.html
+#
+# import logging
+# from logging import handlers
+#
+# class Logger(object):
+#     level_relations = {
+#         'debug':logging.DEBUG,
+#         'info':logging.INFO,
+#         'warning':logging.WARNING,
+#         'error':logging.ERROR,
+#         'crit':logging.CRITICAL
+#     }#æ—¥å¿—çº§åˆ«å…³ç³»æ˜ å°„
+#
+#     def __init__(self,filename,level='info',when='D',backCount=3,fmt='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'):
+#         self.logger = logging.getLogger(filename)
+#         format_str = logging.Formatter(fmt)#è®¾ç½®æ—¥å¿—æ ¼å¼
+#         self.logger.setLevel(self.level_relations.get(level))#è®¾ç½®æ—¥å¿—çº§åˆ«
+#         sh = logging.StreamHandler()#å¾€å±å¹•ä¸Šè¾“å‡º
+#         sh.setFormatter(format_str) #è®¾ç½®å±å¹•ä¸Šæ˜¾ç¤ºçš„æ ¼å¼
+#         th = handlers.TimedRotatingFileHandler(filename=filename,when=when,backupCount=backCount,encoding='utf-8')#å¾€æ–‡ä»¶é‡Œå†™å…¥#æŒ‡å®šé—´éš”æ—¶é—´è‡ªåŠ¨ç”Ÿæˆæ–‡ä»¶çš„å¤„ç†å™¨
+#         #å®ä¾‹åŒ–TimedRotatingFileHandler
+#         #intervalæ˜¯æ—¶é—´é—´éš”ï¼ŒbackupCountæ˜¯å¤‡ä»½æ–‡ä»¶çš„ä¸ªæ•°ï¼Œå¦‚æœè¶…è¿‡è¿™ä¸ªä¸ªæ•°ï¼Œå°±ä¼šè‡ªåŠ¨åˆ é™¤ï¼Œwhenæ˜¯é—´éš”çš„æ—¶é—´å•ä½ï¼Œå•ä½æœ‰ä»¥ä¸‹å‡ ç§ï¼š
+#         # S ç§’
+#         # M åˆ†
+#         # H å°æ—¶ã€
+#         # D å¤©ã€
+#         # W æ¯æ˜ŸæœŸï¼ˆinterval==0æ—¶ä»£è¡¨æ˜ŸæœŸä¸€ï¼‰
+#         # midnight æ¯å¤©å‡Œæ™¨
+#         th.setFormatter(format_str)#è®¾ç½®æ–‡ä»¶é‡Œå†™å…¥çš„æ ¼å¼
+#         self.logger.addHandler(sh) #æŠŠå¯¹è±¡åŠ åˆ°loggeré‡Œ
+#         self.logger.addHandler(th)
+# if __name__ == '__main__':
+#     log = Logger('all.log',level='debug')
+#     log.logger.debug('debug')
+#     log.logger.info('info')
+#     log.logger.warning('è­¦å‘Š')
+#     log.logger.error('æŠ¥é”™')
+#     log.logger.critical('ä¸¥é‡')
+#     Logger('error.log', level='error').logger.error('error')
